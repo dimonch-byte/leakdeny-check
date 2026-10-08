@@ -1,0 +1,6 @@
+# Free starter snippet (Apache / LiteSpeed .htaccess in your docroot)
+RedirectMatch 404 /\.(git|svn|hg)(/|$)
+RedirectMatch 404 /\.env
+<FilesMatch "\.(sql|bak|map)$">
+  Require all denied
+</FilesMatch>
