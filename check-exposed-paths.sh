@@ -84,7 +84,8 @@ unset head_txt
 echo
 if [[ $found -eq 1 ]]; then
   echo "At least one path looks really exposed. Rotate any secret that was public FIRST, then deny the path."
-  echo "Free single-server snippet: deny-snippets/  ·  Exact-path pack + verify.sh: https://leakdeny.adjudi.com/?utm_source=github&utm_medium=checker&utm_campaign=leakdeny-first-sale-w2&utm_content=check-result"
+  enc=$(python3 -c 'import sys,urllib.parse;print(urllib.parse.quote(sys.argv[1]+"/",safe=""))' "$origin" 2>/dev/null || true)
+  echo "Free single-server snippet: deny-snippets/  ·  Exact-path pack + verify.sh: https://leakdeny.adjudi.com/?${enc:+url=$enc&}utm_source=github&utm_medium=checker&utm_campaign=leakdeny-first-sale-w2&utm_content=check-result"
   exit 1
 fi
 echo "Nothing on this short list looks exposed (this is not a full audit)."
